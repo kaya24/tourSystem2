@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ショッピングカート</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<script>
+		/*数値をカンマ区切りに変換する関数*/
+		function addFigure(str) {
+			var num = new String(str).replace(/,/g, "");
+			while (num != (num = num.replace(/^(-?\d+)(\d{3})/, "$1,$2")))
+				;
+			return num;
+		}
+
+		/* 初期値の計算 */
+		window.onload = function() { // 即時関数
+			var all = 0;
+			var unitPriceForm = document.getElementsByClassName("unitPrice");
+
+			for (var i = 0; i < unitPriceForm.length; i++) {
+				// 各商品のoptionタグのclass="quantity"要素のselected値を取得
+				var quantity = document.getElementsByClassName('quantity')[i].value;
+				// 商品のi番目のclass="unitPrice"要素を取得
+				var price = unitPriceForm[i].innerHTML;
+				// 数値からカンマを取り除く
+				price = parseInt(price.split(',').join('').trim());
+				// 小計の計算
+				var subtotal = quantity * price;
+				// 小計欄を書き込む
+				document.getElementsByClassName("subtotal")[i].textContent = addFigure(subtotal);
+				all += subtotal;
+			}
+			// 合計欄に書き込み
+			document.getElementById("all").textContent = addFigure(all);
+		};
+
+		/*数量変更時のアクション*/
+		// 小計を変更しつつ、合計金額を計算し、反映する
+		function change() {
+			var all = 0;
+			var unitPriceForm = document.getElementsByClassName("unitPrice");
+			for (var i = 0; i < unitPriceForm.length; i++) {
+				// 各商品のoptionタグのclass="quantity"要素のselected値を取得
+				var quantity = document.getElementsByClassName('quantity')[i].value;
+				// 商品のi番目のclass="unitPrice"要素を取得
+				var price = unitPriceForm[i].innerHTML;
+				price = parseInt(price.split(',').join('').trim());
+				var subtotal = quantity * price;
+				// 小計欄を書き込む
+				document.getElementsByClassName("subtotal")[i].textContent = addFigure(subtotal);
+				all += subtotal;
+			}
+			// 合計欄に書き込み
+			document.getElementById("all").textContent = addFigure(all);
+		}
+	</script>
+
+	<div>
+		<table border="1">
+			<tr>
+				<th>code</th>
+				<th>name</th>
+				<th>uniprice</th>
+				<th>quant</th>
+				<th>小計(円)</th>
+				<th>削除</th>
+			</tr>
+			<tr>
+				<td>aaa</td>
+				<td>bbb</td>
+				<td class="unitPrice">1,000</td>
+				<td><select class="quantity" name="quantity"
+					onchange="change()">
+						<option class="quant" value="1">1</option>
+						<option class="quant" value="2" selected>2</option>
+						<option class="quant" value="3">3</option>
+						<option class="quant" value="4">4</option>
+				</select></td>
+				<td class="subtotal"></td>
+				<td>btn</td>
+			</tr>
+			<tr>
+				<td>ccc</td>
+				<td>ddd</td>
+				<td class="unitPrice">2,000</td>
+				<td><select class="quantity" name="quantity"
+					onchange="change()">
+						<option class="quant" value="1">1</option>
+						<option class="quant" value="2">2</option>
+						<option class="quant" value="3" selected>3</option>
+						<option class="quant" value="4">4</option>
+				</select></td>
+				<td class="subtotal"></td>
+				<td>btn</td>
+			</tr>
+
+			<tr>
+				<th colspan="4">合計</th>
+				<td id="all"></td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

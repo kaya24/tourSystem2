@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+
+/*
+This is a Cascading Style Sheet (CSS).
+It describes rules for styling your HTML markup.
+
+To use this file, place the following <link> tag anywhere in the <head> of your HTML file, making sure that the filename after "href" matches the name of your file....
+
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+
+Learn more about CSS at https://developer.mozilla.org/en-US/docs/Web/Guide/CSS
+
+When you're done, you can delete all of this grey text, it's just a comment.
+*/
+
+/* Fonts from Google Fonts - more at https://fonts.google.com */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Merriweather:400,700');
+
+#boxB {
+  font-size: 12px;
+  width:50%;
+  float:right;
+}
+
+#dropmenu {
+  clear:both;
+  list-style-type: none;
+  width: 100%;
+    height: 65px;
+  padding: 0;
+}
+
+#dropmenu li {
+  position: relative;
+    width: 25%;
+  float: left;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  height: 60px;
+}
+
+/*メニュー背景色の指定場所*/
+#dropmenu li a {
+  display: block;
+  margin: 0;
+  padding: 16px 0;
+  background:#00519a;
+  color: #fff; /*フォント色*/
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1;
+  text-decoration: none;
+}
+#dropmenu li ul {
+  list-style: none;
+  position: absolute;
+  z-index: 100;
+  top: 80%;
+  left: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+#dropmenu li ul li {
+  overflow: hidden;
+  width: 100%;
+  height: 0;
+  color: #fff;
+  transition: .2s;
+}
+
+/*サブメニュー背景色の指定場所*/
+#dropmenu li ul li a {
+  padding: 13px 15px;
+  background: #669aef;
+  text-align: left;
+  font-size: 12px;
+  font-weight: normal;
+}
+#dropmenu > li:hover > a {
+  /*background: #005aab;*/
+  filter:alpha(opacity=80);
+  opacity:0.8;/*透過させる*/
+}
+#dropmenu > li:hover li:hover > a {  background: #1559c9/*#6e7c0c*/ }
+#dropmenu li:hover > ul > li {
+  overflow: visible;
+  height: 38px;
+}
+#dropmenu li ul li ul {
+  top: 0;
+  left: 100%;
+}
+#dropmenu li:last-child ul li ul {
+  left: -100%;
+  width: 100%;
+}
+#dropmenu li ul li ul li a {
+  background: #1559c9;/*#616d0b*/ }
+#dropmenu li:hover ul li ul li:hover > a {  background: #124caa;/*#535d09*/ }
+#dropmenu li ul li ul:before {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-left-color: #0d377c/*#454e08*/;
+}
+#dropmenu li:last-child ul li ul:before {
+  position: absolute;
+  content: "";
+  top: 13px;
+  left: 200%;
+  margin-left: -20px;
+  border: 5px solid transparent;
+  border-right-color: #0a295d/*#454e08*/;
+}

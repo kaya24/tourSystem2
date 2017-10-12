@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+<title>おばけ</title>
+<script>
+$(function() {
+  $('p').click(function() {$(this).fadeOut('slow');});
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+$('#showcharacters').click(function() { //チェックボックスがクリックされたとき
+if ($(this).attr('checked')) { //もし、チェック状態であれば
+$('#password').replaceWith(
+'<input type="text" name="password" id="password" value="' + $('#password').attr('value') + '" />');
+//パスワードを表示
+} else { //チェックがなければ
+$('#password').replaceWith(
+'<input type="password" name="password" id="password" value="' + $('#password').attr('value') + '" />');
+//パスワードを隠す
+}
+});
+});
+</script>
+
+</head>
+<body>
+<p>おばけー</p>
+
+<form>
+パスワード：<input id="password" name="password" type="password" />
+<input id="showcharacters" name="showcharacters" type="checkbox" /> 確認する
+</form>
+
+
+</body>
+</html>
